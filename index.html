@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andika Fikri Azhari — Running Journey</title>
+    <meta name="description" content="Running portfolio Andika Fikri Azhari — Personal Bests, Favorite Routes, dan perjalanan sebagai Running Enthusiast.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header id="header">
+        <div class="header-inner">
+            <a href="#" class="logo-mark">
+                <div class="logo-initial">A</div>
+                <span class="logo-name">andika.run</span>
+            </a>
+            <nav class="main-nav" id="mainNav">
+                <a href="#journey" class="nav-item">Journey</a>
+                <a href="#personalbest" class="nav-item">PB</a>
+                <a href="#schedule" class="nav-item">Latihan</a>
+                <a href="#races" class="nav-item">Race</a>
+                <a href="#gallery" class="nav-item">Galeri</a>
+                <a href="#routes" class="nav-item">Rute</a>
+                <a href="#connect" class="nav-item">Connect</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-switch" id="themeSwitch" aria-label="Toggle dark mode">
+                    <span class="theme-icon">☀️</span>
+                </button>
+                <button class="menu-btn" id="menuBtn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu (Slide Panel) -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <span class="mobile-menu-title">Menu</span>
+            <button class="mobile-close" id="mobileClose">✕</button>
+        </div>
+        <a href="#journey" class="mobile-link">Journey</a>
+        <a href="#personalbest" class="mobile-link">Personal Best</a>
+        <a href="#activities" class="mobile-link">Activities</a>
+        <a href="#schedule" class="mobile-link">Latihan</a>
+        <a href="#races" class="mobile-link">Race</a>
+        <a href="#gallery" class="mobile-link">Galeri</a>
+        <a href="#gear" class="mobile-link">Gear</a>
+        <a href="#routes" class="mobile-link">Rute</a>
+        <a href="#connect" class="mobile-link">Connect</a>
+    </div>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero" id="hero">
+            <div class="hero-inner">
+                <div class="hero-visual-3d">
+                    <div class="scene-3d">
+                        <div class="cube">
+                            <div class="cube-face cube-front">A</div>
+                            <div class="cube-face cube-back">🏃</div>
+                            <div class="cube-face cube-right">F</div>
+                            <div class="cube-face cube-left">⚡</div>
+                            <div class="cube-face cube-top">42K</div>
+                            <div class="cube-face cube-bottom">RUN</div>
+                        </div>
+                    </div>
+                    <div class="orbit-ring">
+                        <div class="orbit-dot dot-1">🏅</div>
+                        <div class="orbit-dot dot-2">👟</div>
+                        <div class="orbit-dot dot-3">⏱️</div>
+                    </div>
+                </div>
+                <div class="hero-text">
+                    <p class="hero-halo">Hello, I'm</p>
+                    <h1 class="hero-name">
+                        <span class="name-line">Andika</span>
+                        <span class="name-line name-last">Fikri Azhari</span>
+                    </h1>
+                    <p class="hero-motto">"Berlari terus — karena berhenti bukan pilihan."</p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hs-val">2,847</span>
+                            <span class="hs-lbl">Total KM</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hs-val">142</span>
+                            <span class="hs-lbl">Activities</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hs-val">3</span>
+                            <span class="hs-lbl">Marathons</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hs-val">15</span>
+                            <span class="hs-lbl">Medals</span>
+                        </div>
+                    </div>
+                    <div class="hero-cta">
+                        <a href="#personalbest" class="btn-primary">Personal Best →</a>
+                        <a href="#journey" class="btn-ghost">Lihat Journey</a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-hint">
+                <div class="scroll-bar"></div>
+            </div>
+        </section>
+
+        <!-- Journey -->
+        <section class="section section-journey" id="journey">
+            <div class="container">
+                <div class="section-head">
+                    <span class="sec-label">01</span>
+                    <h2 class="sec-title">Running Journey</h2>
+                    <p class="sec-sub">Dari langkah pertama hingga garis finish — setiap kilometer punya cerita</p>
+                </div>
+                <div class="journey-path">
+                    <div class="journey-line"></div>
+                    <div class="journey-stop stop-2022" data-reveal>
+                        <div class="stop-marker">🌱</div>
+                        <span class="stop-year">2022</span>
+                        <h3>Langkah Pertama</h3>
+                        <p>Mulai berlari 1-2KM. Tidak bisa lari tanpa berhenti. Tapi ini awal dari segalanya. Dari treadmill ke jalanan.</p>
+                        <span class="stop-tag">Beginner</span>
+                    </div>
+                    <div class="journey-stop stop-2023" data-reveal>
+                        <div class="stop-marker">🎯</div>
+                        <span class="stop-year">2023</span>
+                        <h3>5K Pertama — Finish!</h3>
+                        <p>Finish 5K pertama tanpa berhenti! Waktu 32 menit. Gabung komunitas lari lokal dan mulai rutin latihan.</p>
+                        <span class="stop-tag">Breakthrough</span>
+                    </div>
+                    <div class="journey-stop stop-2024" data-reveal>
+                        <div class="stop-marker">🚀</div>
+                        <span class="stop-year">2024</span>
+                        <h3>Sub-50 10K & Half Marathon</h3>
+                        <p>Sub-50 menit di 10K! Finish Half Marathon pertama 1:52:00. Gabung Boloplayon Running Team.</p>
+                        <span class="stop-tag">Level Up</span>
+                    </div>
+                    <div class="journey-stop stop-2025" data-reveal>
+                        <div class="stop-marker">🏆</div>
+                        <span class="stop-year">2025</span>
+                        <h3>Marathon Debut — Sub 4 Jam!</h3>
+                        <p>42.195KM dalam 3:58:00! Sub-4 jam di debut marathon. Jakarta Marathon 2025 — unforgettable moment.</p>
+                        <span class="stop-tag">Milestone</span>
+                    </div>
+                    <div class="journey-stop stop-2026" data-reveal>
+                        <div class="stop-marker">🔥</div>
+                        <span class="stop-year">2026</span>
+                        <h3>Target: Sub-3:45 & Ultra 50K</h3>
+                        <p>Target marathon sub-3:45. Persiapan ultra trail pertama 50K. Terus berkembang, terus berlari.</p>
+                        <span class="stop-tag">In Progress</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Best -->
+        <section class="section section-pb" id="personalbest">
+            <div class="container">
+                <div class="section-head">
+                    <span class="sec-label">02</span>
+                    <h2 class="sec-title">Personal Best</h2>
+                    <p class="sec-sub">Catatan waktu terbaik di setiap jarak</p>
+                </div>
+                <div class="pb-cards">
+                    <div class="pb-card pb-featured" data-reveal>
+                        <div class="pb-left">
+                            <span class="pb-distance">42.195 KM</span>
+                            <span class="pb-event-label">Full Marathon</span>
+                        </div>
+                        <div class="pb-center">
+                            <span class="pb-time">3:58:00</span>
+                            <span class="pb-pace">Pace 5:38/km</span>
+                        </div>
+                        <div class="pb-right">
+                            <span>📍 Jakarta Marathon</span>
+                            <span>📅 Nov 2025</span>
+                            <span>🏆 Top 15%</span>
+                        </div>
+                    </div>
+                    <div class="pb-card" data-reveal>
+                        <div class="pb-left">
+                            <span class="pb-distance">21.1 KM</span>
+                            <span class="pb-event-label">Half Marathon</span>
+                        </div>
+                        <div class="pb-center">
+                            <span class="pb-time">1:48:32</span>
+                            <span class="pb-pace">Pace 5:08/km</span>
+                        </div>
+                        <div class="pb-right">
+                            <span>📍 Bali HM</span>
+                            <span>📅 Aug 2025</span>
+                        </div>
+                    </div>
+                    <div class="pb-card" data-reveal>
+                        <div class="pb-left">
+                            <span class="pb-distance">10 KM</span>
+                            <span class="pb-event-label">10K</span>
+                        </div>
+                        <div class="pb-center">
+                            <span class="pb-time">47:15</span>
+                            <span class="pb-pace">Pace 4:44/km</span>
+                        </div>
+                        <div class="pb-right">
+                            <span>📍 City Run</span>
+                            <span>📅 Oct 2025</span>
+                        </div>
+                    </div>
+                    <div class="pb-card" data-reveal>
+                        <div class="pb-left">
+                            <span class="pb-distance">5 KM</span>
+                            <span class="pb-event-label">5K</span>
+                        </div>
+                        <div class="pb-center">
+                            <span class="pb-time">22:45</span>
+                            <span class="pb-pace">Pace 4:33/km</span>
+                        </div>
+                        <div class="pb-right">
+                            <span>📍 Parkrun Jakarta</span>
+                            <span>📅 Sep 2025</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-goals" data-reveal>
+                    <h3>🎯 Target 2026</h3>
+                    <div class="goals-row">
+                        <div class="goal-chip"><span>FM</span><strong>Sub 3:45:00</strong></div>
+                        <div class="goal-chip"><span>HM</span><strong>Sub 1:42:00</strong></div>
+                        <div class="goal-chip"><span>10K</span><strong>Sub 45:00</strong></div>
+                        <div class="goal-chip"><span>5K</span><strong>Sub 21:00</strong></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Activities (Strava) -->
+        <section class="section section-activities" id="activities">
+            <div class="container">
+                <div class="section-head">
+                    <span class="sec-label">03</span>
+                    <h2 class="sec-title">My Activities</h2>
+                    <p class="sec-sub">Aktivitas lari terbaru dari Strava</p>
+                </div>
+                <div id="strava-activities" class="strava-section" data-reveal>
+                    <div class="strava-loading">Memuat aktivitas...</div>
+                </div>
+                <div id="strava-summary" class="strava-section" data-reveal></div>
+            </div>
+        </section>
+
+        <!-- My Gear -->
+        <section class="section section-gear" id="gear">
+            <div class="container">
+                <div class="section-head">
+                    <span class="sec-label">04</span>
+                    <h2 class="sec-title">My Gear</h2>
+                    <p class="sec-sub">Peralatan andalan di setiap run</p>
+                </div>
+                <div class="gear-grid">
+                    <div class="gear-card" data-reveal>
+                        <div class="gear-img" style="background: linear-gradient(135deg, var(--coral-soft), var(--gold-soft));">
+                            <span class="gear-emoji">👟</span>
+                        </div>
+                        <div class="gear-body">
+                            <span class="gear-category">Race Day</span>
+                            <h4>Nike Vaporfly 3</h4>
+                            <p>Carbon plate super shoe untuk race day. Responsif dan ringan.</p>
+                            <div class="gear-meta">
+                                <span>📏 250+ km</span>
+                                <span>⭐ 5/5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gear-card" data-reveal>
+                        <div class="gear-img" style="background: linear-gradient(135deg, var(--sky-soft), var(--mint-soft));">
+                            <span class="gear-emoji">👟</span>
+                        </div>
+                        <div class="gear-body">
+                            <span class="gear-category">Daily Trainer</span>
+                            <h4>Nike Pegasus 41</h4>
+                            <p>Workhorse sehari-hari. Nyaman untuk easy run dan long run.</p>
+                            <div class="gear-meta">
+                                <span>📏 800+ km</span>
+                                <span>⭐ 4.5/5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gear-card" data-reveal>
+                        <div class="gear-img" style="background: linear-gradient(135deg, var(--mint-soft), var(--purple-soft));">
+                            <span class="gear-emoji">👟</span>
+                        </div>
+                        <div class="gear-body">
+                            <span class="gear-category">Trail</span>
+                            <h4>Hoka Speedgoat 5</h4>
+                            <p>Grip maksimal untuk trail. Cushioning untuk medan kasar.</p>
+                            <div class="gear-meta">
+                                <span>📏 150+ km</span>
+                                <span>⭐ 5/5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gear-card" data-reveal>
+                        <div class="gear-img" style="background: linear-gradient(135deg, var(--gold-soft), var(--coral-soft));">
+                            <span class="gear-emoji">⌚</span>
+                        </div>
+                        <div class="gear-body">
+                            <span class="gear-category">Watch</span>
+                            <h4>Garmin Forerunner 265</h4>
+                            <p>GPS akurat, AMOLED display, training load & recovery advisor.</p>
+                            <div class="gear-meta">
+                                <span>🔋 13 hari</span>
+                                <span>⭐ 5/5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gear-card" data-reveal>
+                        <div class="gear-img" style="background: linear-gradient(135deg, var(--purple-soft), var(--rose-soft));">
+                            <span class="gear-emoji">🎧</span>
+                        </div>
+                        <div class="gear-body">
+                            <span class="gear-category">Audio</span>
+                            <h4>Jabra Elite 85t</h4>
+                            <p>ANC untuk fokus saat run. Tahan keringat dan nyaman.</p>
+                            <div class="gear-meta">
+                                <span>🔋 5.5 jam</span>
+                                <span>⭐ 4.5/5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gear-card" data-reveal>
+                        <div class="gear-img" style="background: linear-gradient(135deg, var(--rose-soft), var(--sky-soft));">
+                            <span class="gear-emoji">🎽</span>
+                        </div>
+                        <div class="gear-body">
+                            <span class="gear-category">Apparel</span>
+                            <h4>Nike Dri-FIT Kit</h4>
+                            <p>Top + Shorts + Socks. Lightweight dan breathable.</p>
+                            <div class="gear-meta">
+                                <span>👕 Dri-FIT</span>
+                                <span>⭐ 4.5/5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Jadwal Latihan -->
+        <section class="section section-training" id="schedule">
+            <div class="container">
+                <div class="section-head">
+                    <span class="sec-label">03</span>
+                    <h2 class="sec-title">Jadwal Latihan</h2>
+                    <p class="sec-sub">Program mingguan yang saya jalani saat ini</p>
+                </div>
+                <div class="training-table-wrap" data-reveal>
+                    <table class="training-table">
+                        <thead>
+                            <tr>
+                                <th>Hari</th>
+                                <th>Sesi</th>
+                                <th>Detail</th>
+                                <th>Volume</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="row-highlight">
+                                <td><strong>SENIN</strong></td>
+                                <td>Tempo Run</td>
+                                <td>Lari pace nyaman-cepat 20-30 menit. Tingkatkan threshold laktat.</td>
+                                <td>10 km / 50 min</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SELASA</strong></td>
+                                <td>Recovery + Core</td>
+                                <td>Easy run 30 menit + latihan core stability 20 menit.</td>
+                                <td>5 km / 50 min</td>
+                            </tr>
+                            <tr class="row-highlight">
+                                <td><strong>RABU</strong></td>
+                                <td>Speed Work</td>
+                                <td>6x800m pace 5K dengan recovery 90 detik jog.</td>
+                                <td>9 km / 55 min</td>
+                            </tr>
+                            <tr>
+                                <td><strong>KAMIS</strong></td>
+                                <td>Rest / Cross</td>
+                                <td>Istirahat total atau cross-training: renang/sepeda/yoga.</td>
+                                <td>Aktif Recovery</td>
+                            </tr>
+                            <tr class="row-highlight">
+                                <td><strong>JUMAT</strong></td>
+                                <td>Hill Repeats</td>
+                                <td>6x200m tanjakan. Perkuat otot kaki dan power.</td>
+                                <td>7 km / 45 min</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SABTU</strong></td>
+                                <td>Easy Run</td>
+                                <td>Lari santai dengan grup Boloplayon. Social run.</td>
+                                <td>8 km / 50 min</td>
+                            </tr>
+                            <tr class="row-highlight">
+                                <td><strong>MINGGU</strong></td>
+                                <td>Long Run</td>
+                                <td>Lari jarak jauh progresif. Pace menurun di akhir.</td>
+                                <td>18-22 km / 100 min</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="training-summary" data-reveal>
+                    <div class="ts-item">
+                        <span class="ts-num">57-61</span>
+                        <span class="ts-lbl">KM / Minggu</span>
+                    </div>
+                    <div class="ts-item">
+                        <span class="ts-num">6</span>
+                        <span class="ts-lbl">Sesi / Minggu</span>
+                    </div>
+                    <div class="ts-item">
+                        <span class="ts-num">RPE 7</span>
+                        <span class="ts-lbl">Intensitas Rata-rata</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Jadwal Race -->
+        <section class="section section-races" id="races">
+            <div class="container">
+                <div class="section-head">
+                    <span class="sec-label">04</span>
+                    <h2 class="sec-title">Jadwal Race</h2>
+                    <p class="sec-sub">Event yang akan saya ikuti tahun ini</p>
+                </div>
+                <div class="race-list">
+                    <div class="race-row" data-reveal>
+                        <div class="race-date-block">
+                            <span class="race-day">15</span>
+                            <span class="race-month">APR</span>
+                        </div>
+                        <div class="race-info">
+                            <div class="race-type-badge">10K</div>
+                            <h3>Boloplayon City Run 2026</h3>
+                            <p>Lari 10K keliling kota dengan rute ikonik Jakarta. Target: Sub-47 menit.</p>
+                            <div class="race-meta">
+                                <span>📍 Jakarta</span>
+                                <span>🎯 Sub 47:00</span>
+                                <span>✅ Registered</span>
+                            </div>
+                        </div>
+                        <div class="race-status status-upcoming">Mendatang</div>
+                    </div>
+                    <div class="race-row" data-reveal>
+                        <div class="race-date-block">
+                            <span class="race-day">03</span>
+                            <span class="race-month">MEI</span>
+                        </div>
+                        <div class="race-info">
+                            <div class="race-type-badge trail">Trail 15K</div>
+                            <h3>Mountain Challenge Series</h3>
+                            <p>Trail run 15K di pegunungan Puncak. Elevation gain 450m. Uji ketahanan!</p>
+                            <div class="race-meta">
+                                <span>📍 Puncak</span>
+                                <span>🎯 Finish Strong</span>
+                                <span>✅ Registered</span>
+                            </div>
+                        </div>
+                        <div class="race-status status-upcoming">Mendatang</div>
+                    </div>
+                    <div class="race-row" data-reveal>
+                        <div class="race-date-block">
+                            <span class="race-day">20</span>
+                            <span class="race-month">JUN</span>
+                        </div>
+                        <div class="race-info">
+                            <div class="race-type-badge charity">HM</div>
+                            <h3>Charity Half Marathon</h3>
+                            <p>Half Marathon amal untuk pendidikan. Target PB baru: Sub-1:45:00.</p>
+                            <div class="race-meta">
+                                <span>📍 Taman Kota</span>
+                                <span>🎯 Sub 1:45:00</span>
+                                <span>⏳ Pending</span>
+                            </div>
+                        </div>
+                        <div class="race-status status-pending">Belum Daftar</div>
+                    </div>
+                    <div class="race-row" data-reveal>
+                        <div class="race-date-block">
+                            <span class="race-day">17</span>
+                            <span class="race-month">NOV</span>
+                        </div>
+                        <div class="race-info">
+                            <div class="race-type-badge marathon">FM</div>
+                            <h3>Jakarta Marathon 2026</h3>
+                            <p>Full Marathon! Target besar tahun ini — sub-3:45. Persiapan 6 bulan.</p>
+                            <div class="race-meta">
+                                <span>📍 Jakarta</span>
+                                <span>🎯 Sub 3:45:00</span>
+                                <span>⏳ Belum Buka</span>
+                            </div>
+                        </div>
+                        <div class="race-status status-goal">TARGET</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section class="section section-gallery" id="gallery">
+            <div class="container">
+                <div class="section-head">
+                    <span class="sec-label">05</span>
+                    <h2 class="sec-title">Galeri</h2>
+                    <p class="sec-sub">Momen-momen dalam perjalanan lari saya</p>
+                </div>
+                <div class="gallery-tabs">
+                    <button class="gallery-tab active" data-filter="all">Semua</button>
+                    <button class="gallery-tab" data-filter="race">Race</button>
+                    <button class="gallery-tab" data-filter="training">Latihan</button>
+                    <button class="gallery-tab" data-filter="team">Tim</button>
+                    <button class="gallery-tab" data-filter="medal">Medali</button>
+                </div>
+                <div class="gallery-masonry">
+                    <div class="gallery-item gi-tall" data-category="race" data-reveal>
+                        <div class="gi-visual race-visual">
+                            <span class="gi-emoji">🏅</span>
+                            <span class="gi-badge">Race</span>
+                        </div>
+                        <div class="gi-caption">
+                            <h4>Jakarta Marathon 2025</h4>
+                            <p>Finish line — Sub 4 jam!</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="training" data-reveal>
+                        <div class="gi-visual training-visual">
+                            <span class="gi-emoji">🏋️</span>
+                            <span class="gi-badge">Latihan</span>
+                        </div>
+                        <div class="gi-caption">
+                            <h4>Speed Work Wednesday</h4>
+                            <p>Interval 6x800m di GBK</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="team" data-reveal>
+                        <div class="gi-visual team-visual">
+                            <span class="gi-emoji">👥</span>
+                            <span class="gi-badge">Tim</span>
+                        </div>
+                        <div class="gi-caption">
+                            <h4>Boloplayon Running Team</h4>
+                            <p>Group run hari Minggu</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item gi-wide" data-category="race" data-reveal>
+                        <div class="gi-visual race-visual-2">
+                            <span class="gi-emoji">🌅</span>
+                            <span class="gi-badge">Race</span>
+                        </div>
+                        <div class="gi-caption">
+                            <h4>Bali Half Marathon 2025</h4>
+                            <p>PB baru — 1:48:32!</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="medal" data-reveal>
+                        <div class="gi-visual medal-visual">
+                            <span class="gi-emoji">🥇</span>
+                            <span class="gi-badge">Medali</span>
+                        </div>
+                        <div class="gi-caption">
+                            <h4>Marathon Finisher Medal</h4>
+                            <p>42.195KM — Done!</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item gi-tall" data-category="training" data-reveal>
+                        <div class="gi-visual training-visual-2">
+                            <span class="gi-emoji">⛰️</span>
+                            <span class="gi-badge">Latihan</span>
+                        </div>
+                        <div class="gi-caption">
+                            <h4>Trail Run Puncak</h4>
+                            <p>Long run weekend — 15K</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="team" data-reveal>
+                        <div class="gi-visual team-visual-2">
+                            <span class="gi-emoji">🎉</span>
+                            <span class="gi-badge">Tim</span>
+                        </div>
+                        <div class="gi-caption">
+                            <h4>Finish Line Party</h4>
+                            <p>Rayakan bersama tim</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item gi-wide" data-category="medal" data-reveal>
+                        <div class="gi-visual medal-visual-2">
+                            <span class="gi-emoji">🎖️</span>
+                            <span class="gi-badge">Medali</span>
+                        </div>
+                        <div class="gi-caption">
+                            <h4>Medal Collection</h4>
+                            <p>15 medali dari berbagai event</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="race" data-reveal>
+                        <div class="gi-visual race-visual-3">
+                            <span class="gi-emoji">🎽</span>
+                            <span class="gi-badge">Race</span>
+                        </div>
+                        <div class="gi-caption">
+                            <h4>City Run 10K 2025</h4>
+                            <p>Sub-50 menit achieved!</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="training" data-reveal>
+                        <div class="gi-visual training-visual-3">
+                            <span class="gi-emoji">🌄</span>
+                            <span class="gi-badge">Latihan</span>
+                        </div>
+                        <div class="gi-caption">
+                            <h4>Sunrise Run Monas</h4>
+                            <p>Easy run pagi hari</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strava Live Data -->
+        <section class="section section-strava" id="strava">
+            <div class="container">
+                <div class="section-head">
+                    <span class="sec-label">06</span>
+                    <h2 class="sec-title">Strava Live</h2>
+                    <p class="sec-sub">Data real-time dari profil Strava saya</p>
+                </div>
+                <div id="strava-profile" class="strava-section" data-reveal>
+                    <div class="strava-loading">Memuat data Strava...</div>
+                </div>
+                <div id="strava-stats" class="strava-section" data-reveal></div>
+            </div>
+        </section>
+
+        <!-- Routes -->
+        <section class="section section-routes" id="routes">
+            <div class="container">
+                <div class="section-head">
+                    <span class="sec-label">06</span>
+                    <h2 class="sec-title">Rute Favorit</h2>
+                    <p class="sec-sub">Tempat-tempat yang sering saya lari</p>
+                </div>
+                <div class="routes-grid">
+                    <div class="route-card" data-reveal>
+                        <div class="route-img">
+                            <div class="route-visual" style="background: linear-gradient(135deg, var(--coral), var(--gold));">
+                                <span>🌅</span>
+                                <span class="route-km">5.2 km</span>
+                            </div>
+                        </div>
+                        <div class="route-body">
+                            <h4>Monas Sunrise Loop</h4>
+                            <p>Route pagi favorit. Mengelilingi Monas saat sunrise. Perfect untuk easy run.</p>
+                            <div class="route-stats">
+                                <span>📈 +25m elev</span>
+                                <span>🏃 ×87 runs</span>
+                                <span>⏱️ Best: 23:40</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="route-card" data-reveal>
+                        <div class="route-img">
+                            <div class="route-visual" style="background: linear-gradient(135deg, var(--electric), var(--teal));">
+                                <span>🏙️</span>
+                                <span class="route-km">10.5 km</span>
+                            </div>
+                        </div>
+                        <div class="route-body">
+                            <h4>Sudirman City Explorer</h4>
+                            <p>Rute urban melalui Jl. Sudirman—Thamrin. Car Free Day waktu terbaik.</p>
+                            <div class="route-stats">
+                                <span>📈 +45m elev</span>
+                                <span>🏃 ×52 runs</span>
+                                <span>⏱️ Best: 48:30</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="route-card" data-reveal>
+                        <div class="route-img">
+                            <div class="route-visual" style="background: linear-gradient(135deg, var(--lime), var(--teal));">
+                                <span>🏟️</span>
+                                <span class="route-km">3.8 km/lap</span>
+                            </div>
+                        </div>
+                        <div class="route-body">
+                            <h4>GBK Senayan Circuit</h4>
+                            <p>Circuit di GBK untuk interval & speed work. Track rata dan terukur.</p>
+                            <div class="route-stats">
+                                <span>📈 +15m elev</span>
+                                <span>🏃 ×34 runs</span>
+                                <span>⏱️ Best: 17:06</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="route-card" data-reveal>
+                        <div class="route-img">
+                            <div class="route-visual" style="background: linear-gradient(135deg, var(--violet), var(--coral));">
+                                <span>⛰️</span>
+                                <span class="route-km">15.3 km</span>
+                            </div>
+                        </div>
+                        <div class="route-body">
+                            <h4>Puncak Mountain Trail</h4>
+                            <p>Trail favorit untuk long run weekend. Elevation gain signifikan.</p>
+                            <div class="route-stats">
+                                <span>📈 +450m elev</span>
+                                <span>🏃 ×18 runs</span>
+                                <span>⏱️ Best: 1:32:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Connect -->
+        <section class="section section-connect" id="connect">
+            <div class="container">
+                <div class="section-head">
+                    <span class="sec-label">07</span>
+                    <h2 class="sec-title">Let's Connect</h2>
+                    <p class="sec-sub">Mari berlari bersama</p>
+                </div>
+                <div class="connect-grid">
+                    <a href="https://strava.com" target="_blank" class="connect-card" data-reveal>
+                        <span class="connect-icon">🏅</span>
+                        <span class="connect-name">Strava</span>
+                        <span class="connect-handle">@andika.run</span>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="connect-card" data-reveal>
+                        <span class="connect-icon">📸</span>
+                        <span class="connect-name">Instagram</span>
+                        <span class="connect-handle">@andika.run</span>
+                    </a>
+                    <a href="https://connect.garmin.com" target="_blank" class="connect-card" data-reveal>
+                        <span class="connect-icon">⌚</span>
+                        <span class="connect-name">Garmin</span>
+                        <span class="connect-handle">Andika Fikri</span>
+                    </a>
+                </div>
+                <div class="connect-motto" data-reveal>
+                    <p class="motto-big">"Berlari terus — <br> karena berhenti bukan pilihan."</p>
+                    <a href="https://wa.me/62812" class="btn-primary">Hubungi Saya →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-logo">A</div>
+                <p>&copy; 2026 Andika Fikri Azhari — Run with purpose.</p>
+                <a href="#hero" class="footer-top">↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="strava.js"></script>
+</body>
+</html>
