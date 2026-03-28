@@ -1,166 +1,161 @@
 // ===========================
-// Strava Auto-Fetch with CORS Proxy
+// Strava API Integration
 // ===========================
 // 
-// Solusi: Gunakan proxy untuk ambil data Strava dari browser
-// Token tidak expired selama app aktif di Strava
+// CARA SETUP:
+// 1. Buka https://www.strava.com/settings/api
+// 2. Buat aplikasi baru (Application Name: "Andika Run Portfolio")
+// 3. Copy Client ID dan Client Secret
+// 4. Dapatkan Access Token melalui OAuth flow
+// 5. Masukkan token di bawah ini
+//
+// Atau gunakan Personal Access Token dari:
+// https://www.strava.com/settings/api
 
 const STRAVA_CONFIG = {
-    athleteId: '151121389',
-    // Masukkan Access Token Anda di sini
-    // Dapatkan dari: https://www.strava.com/settings/api
+    // Ganti dengan token Anda
     accessToken: 'f474894c011b734946af8b62cc81d776a094e652',
     
-    // CORS Proxy (gratis, untuk bypass CORS)
-    proxyUrl: 'https://corsproxy.io/?',
+    // Ganti dengan athlete ID Anda
+    athleteId: '151121389',
     
-    // Strava API base
-    stravaApi: 'https://www.strava.com/api/v3',
+    // Base URL
+    baseUrl: 'https://www.strava.com/api/v3',
     
-    // Cache
-    cacheKey: 'strava_cache',
-    cacheDuration: 10 * 60 * 1000 // 10 menit
+    // Cache duration (5 menit)
+    cacheDuration: 5 * 60 * 1000
 };
 
 // ===========================
-// Fetch dengan Proxy
+// Strava API Client
 // ===========================
-async function fetchStrava(endpoint) {
-    // Cek cache
-    const cached = getCache(endpoint);
-    if (cached) return cached;
+class StravaClient {
+    constructor(config) {
+        this.config = config;
+        this.cache = new Map();
+    }
 
-    const url = `${STRAVA_CONFIG.proxyUrl}${encodeURIComponent(STRAVA_CONFIG.stravaApi + endpoint)}`;
-    
-    try {
-        const response = await fetch(url, {
-            headers: {
-                'Authorization': `Bearer ${STRAVA_CONFIG.accessToken}`
+    async fetch(endpoint, params = {}) {
+        const cacheKey = `${endpoint}_${JSON.stringify(params)}`;
+        const cached = this.cache.get(cacheKey);
+        
+        if (cached && Date.now() - cached.timestamp < this.config.cacheDuration) {
+            return cached.data;
+        }
+
+        try {
+            const url = new URL(`${this.config.baseUrl}${endpoint}`);
+            Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
+            const response = await fetch(url.toString(), {
+                headers: {
+                    'Authorization': `Bearer ${this.config.accessToken}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Strava API Error: ${response.status}`);
             }
-        });
 
-        if (!response.ok) {
-            throw new Error(`Strava API Error: ${response.status} - ${response.statusText}`);
+            const data = await response.json();
+            this.cache.set(cacheKey, { data, timestamp: Date.now() });
+            return data;
+        } catch (error) {
+            console.error('Strava fetch error:', error);
+            return null;
         }
-
-        const data = await response.json();
-        setCache(endpoint, data);
-        return data;
-    } catch (error) {
-        console.error('Strava fetch error:', error);
-        return null;
     }
-}
 
-// ===========================
-// Cache Functions
-// ===========================
-function getCache(key) {
-    try {
-        const raw = localStorage.getItem(STRAVA_CONFIG.cacheKey);
-        if (!raw) return null;
-        const cache = JSON.parse(raw);
-        if (cache[key] && Date.now() - cache[key].timestamp < STRAVA_CONFIG.cacheDuration) {
-            return cache[key].data;
-        }
-    } catch (e) {}
-    return null;
-}
-
-function setCache(key, data) {
-    try {
-        const raw = localStorage.getItem(STRAVA_CONFIG.cacheKey);
-        const cache = raw ? JSON.parse(raw) : {};
-        cache[key] = { data, timestamp: Date.now() };
-        localStorage.setItem(STRAVA_CONFIG.cacheKey, JSON.stringify(cache));
-    } catch (e) {}
-}
-
-// ===========================
-// Strava API Endpoints
-// ===========================
-const StravaAPI = {
-    // Profil atlet
+    // ===========================
+    // Athlete Profile
+    // ===========================
     async getAthlete() {
-        return await fetchStrava('/athlete');
-    },
-
-    // Statistik atlet
-    async getStats() {
-        return await fetchStrava(`/athletes/${STRAVA_CONFIG.athleteId}/stats`);
-    },
-
-    // Aktivitas terbaru
-    async getActivities(perPage = 10) {
-        return await fetchStrava(`/athlete/activities?per_page=${perPage}`);
-    },
-
-    // Detail aktivitas
-    async getActivity(id) {
-        return await fetchStrava(`/activities/${id}`);
+        return await this.fetch('/athlete');
     }
-};
+
+    // ===========================
+    // Athlete Stats
+    // ===========================
+    async getStats() {
+        return await this.fetch(`/athletes/${this.config.athleteId}/stats`);
+    }
+
+    // ===========================
+    // Recent Activities
+    // ===========================
+    async getRecentActivities(perPage = 10) {
+        return await this.fetch('/athlete/activities', { per_page: perPage });
+    }
+
+    // ===========================
+    // Activity Details
+    // ===========================
+    async getActivity(id) {
+        return await this.fetch(`/activities/${id}`);
+    }
+
+    // ===========================
+    // Kudos on Activity
+    // ===========================
+    async getKudos(activityId) {
+        return await this.fetch(`/activities/${activityId}/kudos`);
+    }
+}
 
 // ===========================
-// Render Data
+// Initialize Strava Client
+// ===========================
+const strava = new StravaClient(STRAVA_CONFIG);
+
+// ===========================
+// Render Functions
 // ===========================
 async function loadStravaData() {
-    // Cek token
-    if (STRAVA_CONFIG.accessToken === 'PASTE_TOKEN_DISINI') {
-        showSetupGuide();
+    // Cek apakah token sudah diisi
+    if (STRAVA_CONFIG.accessToken === 'PASTE_STRAVA_TOKEN_DISINI') {
+        showStravaSetup();
         return;
     }
 
-    showLoading();
-
-    // Load paralel
+    // Load data secara paralel
     const [athlete, stats, activities] = await Promise.all([
-        StravaAPI.getAthlete(),
-        StravaAPI.getStats(),
-        StravaAPI.getActivities(8)
+        strava.getAthlete(),
+        strava.getStats(),
+        strava.getRecentActivities(10)
     ]);
 
-    if (athlete) renderAthlete(athlete);
+    if (athlete) renderAthleteProfile(athlete);
     if (stats) renderStats(stats);
-    if (activities && activities.length > 0) {
-        renderActivities(activities);
-        renderSummary(activities);
-    } else {
-        showError('Tidak dapat memuat aktivitas. Periksa token Anda.');
+    if (activities) {
+        renderRecentActivities(activities);
+        renderActivitySummary(activities);
     }
 }
 
 // ===========================
-// Show Setup Guide
+// Show Setup Instructions
 // ===========================
-function showSetupGuide() {
-    const containers = ['strava-profile', 'strava-stats', 'strava-activities', 'strava-summary'];
-    
-    containers.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.innerHTML = `
-                <div class="setup-card">
+function showStravaSetup() {
+    const containers = [
+        document.getElementById('strava-profile'),
+        document.getElementById('strava-stats'),
+        document.getElementById('strava-activities')
+    ];
+
+    containers.forEach(container => {
+        if (container) {
+            container.innerHTML = `
+                <div class="strava-setup">
                     <div class="setup-icon">🔗</div>
                     <h4>Hubungkan Strava</h4>
-                    <div class="setup-steps">
-                        <div class="setup-step">
-                            <span class="step-num">1</span>
-                            <span>Buka <a href="https://www.strava.com/settings/api" target="_blank">strava.com/settings/api</a></span>
-                        </div>
-                        <div class="setup-step">
-                            <span class="step-num">2</span>
-                            <span>Klik "Create & Manage Your App"</span>
-                        </div>
-                        <div class="setup-step">
-                            <span class="step-num">3</span>
-                            <span>Copy <strong>Access Token</strong></span>
-                        </div>
-                        <div class="setup-step">
-                            <span class="step-num">4</span>
-                            <span>Edit <code>strava.js</code> → paste token</span>
-                        </div>
-                    </div>
+                    <p>Untuk menampilkan data otomatis dari Strava:</p>
+                    <ol>
+                        <li>Buka <a href="https://www.strava.com/settings/api" target="_blank">Strava API Settings</a></li>
+                        <li>Buat aplikasi baru</li>
+                        <li>Copy Access Token</li>
+                        <li>Edit file <code>strava.js</code> dan paste token</li>
+                    </ol>
                 </div>
             `;
         }
@@ -168,44 +163,25 @@ function showSetupGuide() {
 }
 
 // ===========================
-// Show Loading
+// Render Athlete Profile
 // ===========================
-function showLoading() {
-    const containers = ['strava-profile', 'strava-stats', 'strava-activities', 'strava-summary'];
-    containers.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.innerHTML = '<div class="loading">Memuat data Strava... ⏳</div>';
-    });
-}
+function renderAthleteProfile(athlete) {
+    const container = document.getElementById('strava-profile');
+    if (!container) return;
 
-// ===========================
-// Show Error
-// ===========================
-function showError(msg) {
-    const el = document.getElementById('strava-activities');
-    if (el) el.innerHTML = `<div class="error-msg">⚠️ ${msg}</div>`;
-}
-
-// ===========================
-// Render Athlete
-// ===========================
-function renderAthlete(athlete) {
-    const el = document.getElementById('strava-profile');
-    if (!el) return;
-
-    el.innerHTML = `
+    container.innerHTML = `
         <div class="strava-athlete">
             <img src="${athlete.profile}" alt="${athlete.firstname}" class="athlete-photo">
             <div class="athlete-info">
                 <h4>${athlete.firstname} ${athlete.lastname}</h4>
-                <p>${athlete.city || ''}, ${athlete.country || 'Indonesia'}</p>
+                <p>${athlete.city || ''}, ${athlete.country || ''}</p>
                 <div class="athlete-meta">
                     <span>🚴 ${athlete.follower_count || 0} followers</span>
                     <span>👥 ${athlete.friend_count || 0} following</span>
                 </div>
             </div>
             <a href="https://www.strava.com/athletes/${athlete.id}" target="_blank" class="btn-strava">
-                Follow →
+                Lihat di Strava →
             </a>
         </div>
     `;
@@ -215,118 +191,117 @@ function renderAthlete(athlete) {
 // Render Stats
 // ===========================
 function renderStats(stats) {
-    const el = document.getElementById('strava-stats');
-    if (!el) return;
+    // Update hero stats dengan data Strava
+    const totalKm = Math.round((stats.all_run_totals?.distance || 0) / 1000);
+    const totalActivities = stats.all_run_totals?.count || 0;
+    const totalRuns = stats.all_run_totals?.count || 0;
 
-    const ytd = stats.ytd_run_totals || {};
-    const recent = stats.recent_run_totals || {};
-    const all = stats.all_run_totals || {};
+    // Update elemen yang ada
+    const statElements = document.querySelectorAll('.hs-val');
+    if (statElements.length >= 2) {
+        statElements[0].textContent = totalKm.toLocaleString();
+        statElements[1].textContent = totalActivities.toLocaleString();
+    }
 
-    el.innerHTML = `
+    // Render recent stats
+    const container = document.getElementById('strava-stats');
+    if (!container) return;
+
+    const recentRuns = stats.recent_run_totals || {};
+    const ytdRuns = stats.ytd_run_totals || {};
+
+    container.innerHTML = `
         <div class="strava-stats-grid">
             <div class="strava-stat-card">
-                <span class="ss-label">All Time</span>
-                <span class="ss-value">${Math.round((all.distance || 0) / 1000).toLocaleString()}</span>
-                <span class="ss-unit">KM</span>
-            </div>
-            <div class="strava-stat-card">
                 <span class="ss-label">Tahun Ini</span>
-                <span class="ss-value">${Math.round((ytd.distance || 0) / 1000)}</span>
+                <span class="ss-value">${Math.round((ytdRuns.distance || 0) / 1000)}</span>
                 <span class="ss-unit">KM</span>
             </div>
             <div class="strava-stat-card">
-                <span class="ss-label">4 Minggu</span>
-                <span class="ss-value">${Math.round((recent.distance || 0) / 1000)}</span>
+                <span class="ss-label">Activities</span>
+                <span class="ss-value">${ytdRuns.count || 0}</span>
+                <span class="ss-unit">runs</span>
+            </div>
+            <div class="strava-stat-card">
+                <span class="ss-label">4 Minggu Terakhir</span>
+                <span class="ss-value">${Math.round((recentRuns.distance || 0) / 1000)}</span>
                 <span class="ss-unit">KM</span>
             </div>
             <div class="strava-stat-card">
                 <span class="ss-label">Elevation</span>
-                <span class="ss-value">${Math.round((ytd.elevation_gain || 0)).toLocaleString()}</span>
-                <span class="ss-unit">m</span>
+                <span class="ss-value">${Math.round((ytdRuns.elevation_gain || 0))}</span>
+                <span class="ss-unit">m gain</span>
             </div>
         </div>
     `;
-
-    // Update hero stats
-    updateHeroStats(all);
 }
 
 // ===========================
-// Update Hero Stats
+// Render Recent Activities
 // ===========================
-function updateHeroStats(allStats) {
-    const totalKm = Math.round((allStats.distance || 0) / 1000);
-    const totalActivities = allStats.count || 0;
-    
-    const statEls = document.querySelectorAll('.hs-val');
-    if (statEls.length >= 2) {
-        statEls[0].textContent = totalKm.toLocaleString();
-        statEls[1].textContent = totalActivities.toLocaleString();
+function renderRecentActivities(activities) {
+    const container = document.getElementById('strava-activities');
+    if (!container) return;
+
+    if (!activities || activities.length === 0) {
+        container.innerHTML = '<p class="no-data">Belum ada aktivitas.</p>';
+        return;
     }
-}
-
-// ===========================
-// Render Activities
-// ===========================
-function renderActivities(activities) {
-    const el = document.getElementById('strava-activities');
-    if (!el) return;
 
     const html = activities.map(activity => {
         const distance = (activity.distance / 1000).toFixed(1);
-        const pace = calcPace(activity.distance, activity.moving_time);
+        const pace = calculatePace(activity.distance, activity.moving_time);
         const date = new Date(activity.start_date).toLocaleDateString('id-ID', {
-            weekday: 'short', day: 'numeric', month: 'short'
+            day: 'numeric', month: 'short', year: 'numeric'
         });
         const time = formatTime(activity.moving_time);
-        const icon = getActivityIcon(activity.type);
 
         return `
             <div class="activity-row">
-                <div class="activity-icon">${icon}</div>
+                <div class="activity-icon">${getActivityIcon(activity.type)}</div>
                 <div class="activity-info">
                     <h5>${activity.name}</h5>
                     <span class="activity-date">${date}</span>
                 </div>
                 <div class="activity-stats">
                     <span class="activity-distance">${distance} km</span>
-                    <span class="activity-pace">${pace}/km</span>
+                    <span class="activity-pace">${pace} /km</span>
                     <span class="activity-time">${time}</span>
                 </div>
-                <a href="https://www.strava.com/activities/${activity.id}" target="_blank" class="activity-link">↗</a>
+                <a href="https://www.strava.com/activities/${activity.id}" target="_blank" class="activity-link">→</a>
             </div>
         `;
     }).join('');
 
-    el.innerHTML = `
+    container.innerHTML = `
         <div class="strava-activities-list">
-            <div class="activities-header">
-                <h4>🏃 Aktivitas Terbaru</h4>
-                <a href="https://www.strava.com/athletes/${STRAVA_CONFIG.athleteId}" target="_blank" class="see-all">Lihat Semua →</a>
-            </div>
+            <h4>🏃 Aktivitas Terbaru</h4>
             ${html}
+            <a href="https://www.strava.com/athletes/${STRAVA_CONFIG.athleteId}" target="_blank" class="btn-strava">
+                Lihat Semua di Strava →
+            </a>
         </div>
     `;
 }
 
 // ===========================
-// Render Summary
+// Render Activity Summary
 // ===========================
-function renderSummary(activities) {
-    const el = document.getElementById('strava-summary');
-    if (!el) return;
+function renderActivitySummary(activities) {
+    const container = document.getElementById('strava-summary');
+    if (!container || !activities || activities.length === 0) return;
 
-    const totalDist = activities.reduce((s, a) => s + (a.distance || 0), 0);
-    const totalTime = activities.reduce((s, a) => s + (a.moving_time || 0), 0);
-    const totalElev = activities.reduce((s, a) => s + (a.total_elevation_gain || 0), 0);
-    const avgPace = calcPace(totalDist, totalTime);
+    const totalDist = activities.reduce((sum, a) => sum + (a.distance || 0), 0);
+    const totalTime = activities.reduce((sum, a) => sum + (a.moving_time || 0), 0);
+    const totalElev = activities.reduce((sum, a) => sum + (a.total_elevation_gain || 0), 0);
+    const avgPace = calculatePace(totalDist, totalTime);
 
-    el.innerHTML = `
+    container.innerHTML = `
         <div class="summary-cards">
             <div class="summary-card">
                 <span class="sc-icon">📏</span>
                 <span class="sc-value">${(totalDist / 1000).toFixed(1)}</span>
-                <span class="sc-unit">KM (${activities.length} runs)</span>
+                <span class="sc-unit">KM Total</span>
             </div>
             <div class="summary-card">
                 <span class="sc-icon">⏱️</span>
@@ -350,28 +325,37 @@ function renderSummary(activities) {
 // ===========================
 // Helper Functions
 // ===========================
-function calcPace(distM, timeS) {
-    if (!distM || distM === 0) return '--:--';
-    const pace = timeS / (distM / 1000);
-    const m = Math.floor(pace / 60);
-    const s = Math.round(pace % 60);
-    return `${m}:${String(s).padStart(2, '0')}`;
+function calculatePace(distanceMeters, timeSeconds) {
+    if (!distanceMeters || distanceMeters === 0) return '--:--';
+    const paceSeconds = timeSeconds / (distanceMeters / 1000);
+    const minutes = Math.floor(paceSeconds / 60);
+    const seconds = Math.round(paceSeconds % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
 function formatTime(seconds) {
     const h = Math.floor(seconds / 3600);
     const m = Math.floor((seconds % 3600) / 60);
     const s = Math.round(seconds % 60);
-    if (h > 0) return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-    return `${m}:${String(s).padStart(2, '0')}`;
+    if (h > 0) return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
 function getActivityIcon(type) {
-    const icons = { Run: '🏃', TrailRun: '⛰️', Walk: '🚶', Ride: '🚴', Swim: '🏊' };
+    const icons = {
+        'Run': '🏃',
+        'TrailRun': '⛰️',
+        'Walk': '🚶',
+        'Ride': '🚴',
+        'Swim': '🏊',
+        'Hike': '🥾'
+    };
     return icons[type] || '🏃';
 }
 
 // ===========================
-// Init
+// Initialize on Load
 // ===========================
-document.addEventListener('DOMContentLoaded', loadStravaData);
+document.addEventListener('DOMContentLoaded', () => {
+    loadStravaData();
+});

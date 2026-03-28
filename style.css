@@ -177,11 +177,20 @@ html.theme-transition, html.theme-transition * {
     display: flex; align-items: center; gap: 48px;
 }
 
-/* 3D Cube — Static */
 .hero-visual-3d {
-    flex-shrink: 0; position: relative;
-    width: 200px; height: 200px;
-    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    width: 280px;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 3px solid var(--coral);
+    box-shadow: var(--shadow-lg);
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .scene-3d {
@@ -191,28 +200,6 @@ html.theme-transition, html.theme-transition * {
     transform: rotateX(-20deg) rotateY(30deg);
 }
 
-.cube {
-    width: 100%; height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-}
-
-.cube-face {
-    position: absolute;
-    width: 120px; height: 120px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 24px; font-weight: 700;
-    border-radius: 12px;
-    border: 2px solid;
-}
-
-.cube-front  { transform: translateZ(60px); background: var(--coral-soft); border-color: var(--coral); color: var(--coral); }
-.cube-back   { transform: rotateY(180deg) translateZ(60px); background: var(--sky-soft); border-color: var(--sky); font-size: 32px; }
-.cube-right  { transform: rotateY(90deg) translateZ(60px); background: var(--mint-soft); border-color: var(--mint); color: var(--mint); }
-.cube-left   { transform: rotateY(-90deg) translateZ(60px); background: var(--gold-soft); border-color: var(--gold); font-size: 32px; }
-.cube-top    { transform: rotateX(90deg) translateZ(60px); background: var(--purple-soft); border-color: var(--purple); color: var(--purple); font-size: 18px; }
-.cube-bottom { transform: rotateX(-90deg) translateZ(60px); background: var(--rose-soft); border-color: var(--rose); color: var(--rose); font-size: 18px; }
 
 .hero-text { flex: 1; }
 
@@ -790,82 +777,6 @@ html.theme-transition, html.theme-transition * {
 
 .no-data { text-align: center; color: var(--text-3); padding: 24px; }
 
-/* Strava Embeds */
-.strava-badge-wrap {
-    text-align: center; padding: 16px 0;
-}
-
-.strava-badge-wrap iframe {
-    max-width: 100%;
-}
-
-.strava-embeds {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 24px;
-}
-
-.embed-note { margin-bottom: 16px; }
-.embed-note p { font-size: 14px; font-weight: 600; }
-.embed-hint { font-size: 12px !important; color: var(--text-3); font-weight: 400 !important; }
-
-.embed-frame-wrap {
-    border-radius: 12px; overflow: hidden;
-    border: 1px solid var(--border);
-    margin-bottom: 16px;
-}
-
-.embed-frame-wrap iframe {
-    background: var(--surface);
-}
-
-.embed-cta { text-align: center; padding-top: 8px; }
-
-.strava-logo-small {
-    width: 40px; height: auto; opacity: 0.6;
-}
-
-/* Setup Card */
-.setup-card {
-    background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 32px; text-align: center;
-}
-
-.setup-icon { font-size: 40px; margin-bottom: 12px; }
-.setup-card h4 { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
-
-.setup-steps { text-align: left; max-width: 400px; margin: 0 auto; }
-
-.setup-step {
-    display: flex; align-items: center; gap: 12px;
-    padding: 10px 0; border-bottom: 1px solid var(--border-light);
-}
-
-.step-num {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: #FC4C02; color: white; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; flex-shrink: 0;
-}
-
-.setup-step span:last-child { font-size: 13px; color: var(--text-2); }
-.setup-step a { color: #FC4C02; text-decoration: underline; }
-.setup-step code { background: var(--surface); padding: 2px 6px; border-radius: 4px; font-size: 12px; }
-
-/* Loading & Error */
-.loading { text-align: center; padding: 32px; color: var(--text-3); font-size: 14px; }
-.error-msg { text-align: center; padding: 20px; color: var(--coral); font-size: 14px; background: var(--coral-soft); border-radius: 10px; }
-
-/* Activities Header */
-.activities-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 16px;
-}
-
-.activities-header h4 { font-size: 18px; font-weight: 700; }
-
-.see-all { font-size: 13px; color: #FC4C02; font-weight: 600; }
-.see-all:hover { text-decoration: underline; }
-
 /* === FOOTER === */
 .footer { border-top: 1px solid var(--border); padding: 24px 0; }
 
@@ -1008,8 +919,6 @@ html.theme-transition, html.theme-transition * {
     .connect-grid { grid-template-columns: 1fr; }
     .strava-stats-grid { grid-template-columns: repeat(2, 1fr); }
     .strava-athlete { flex-direction: column; text-align: center; }
-    .gear-grid { grid-template-columns: repeat(2, 1fr); }
-    .summary-cards { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
@@ -1043,4 +952,31 @@ html.theme-transition, html.theme-transition * {
 
     .connect-grid { grid-template-columns: 1fr; gap: 10px; }
     .connect-card { padding: 20px; }
+    
+}
+
+.gear-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.connect-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.connect-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 16px;
+    transition: 0.3s;
+}
+
+.connect-card:hover {
+    transform: translateY(-5px);
 }

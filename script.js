@@ -5,7 +5,7 @@ const html = document.documentElement;
 const themeSwitch = document.getElementById('themeSwitch');
 
 function initTheme() {
-    const saved = localStorage.getItem('andika-run-theme') || 'light';
+    const saved = localStorage.getItem('andika-run-theme') || 'dark';
     html.setAttribute('data-theme', saved);
     updateThemeIcon(saved);
 }
@@ -35,40 +35,23 @@ window.addEventListener('scroll', () => {
 });
 
 // ===========================
-// Mobile Menu (Slide Panel)
+// Mobile Menu
 // ===========================
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
-const mobileOverlay = document.getElementById('mobileOverlay');
-const mobileClose = document.getElementById('mobileClose');
-
-function openMenu() {
-    mobileMenu.classList.add('active');
-    mobileOverlay.classList.add('active');
-    menuBtn.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeMenu() {
-    mobileMenu.classList.remove('active');
-    mobileOverlay.classList.remove('active');
-    menuBtn.classList.remove('active');
-    document.body.style.overflow = '';
-}
 
 menuBtn.addEventListener('click', () => {
-    if (mobileMenu.classList.contains('active')) {
-        closeMenu();
-    } else {
-        openMenu();
-    }
+    menuBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
 });
 
-if (mobileClose) mobileClose.addEventListener('click', closeMenu);
-if (mobileOverlay) mobileOverlay.addEventListener('click', closeMenu);
-
 document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    });
 });
 
 // ===========================
@@ -155,8 +138,10 @@ const galleryItems = document.querySelectorAll('.gallery-item');
 galleryTabs.forEach(tab => {
     tab.addEventListener('click', () => {
         const filter = tab.getAttribute('data-filter');
+
         galleryTabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
+
         galleryItems.forEach(item => {
             const category = item.getAttribute('data-category');
             if (filter === 'all' || category === filter) {
