@@ -1,14 +1,56 @@
+
 <!DOCTYPE html>
 <html lang="id" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andika Fikri Azhari — Running Journey</title>
-    <meta name="description" content="Running portfolio Andika Fikri Azhari — Personal Bests, Favorite Routes, dan perjalanan sebagai Running Enthusiast.">
+    <title>Andika Fikri Azhari â€” Running Journey</title>
+    <meta name="description" content="Running portfolio Andika Fikri Azhari â€” Personal Bests, Favorite Routes, dan perjalanan sebagai Running Enthusiast.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .section-alfamart { background: linear-gradient(180deg, rgba(237, 28, 36, 0.06), transparent 42%), var(--bg, #fff); }
+        .alfamart-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); gap: 24px; align-items: stretch; margin-bottom: 28px; }
+        .alfamart-panel, .month-card { border: 1px solid rgba(30, 41, 59, .12); background: rgba(255, 255, 255, .76); border-radius: 8px; box-shadow: 0 18px 50px rgba(15, 23, 42, .08); }
+        [data-theme="dark"] .alfamart-panel, [data-theme="dark"] .month-card { background: rgba(15, 23, 42, .72); border-color: rgba(255, 255, 255, .12); }
+        .alfamart-panel { padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
+        .alfamart-kicker { display: inline-flex; width: fit-content; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 999px; background: #ed1c24; color: #fff; font-size: .78rem; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; }
+        .alfamart-panel h3 { margin: 0; font-size: clamp(1.8rem, 3vw, 3rem); line-height: 1.02; letter-spacing: 0; }
+        .alfamart-panel p { margin: 0; color: var(--text-muted, #64748b); max-width: 62ch; }
+        .alfamart-targets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+        .target-box { min-height: 86px; padding: 14px; border-radius: 8px; background: rgba(15, 23, 42, .04); display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+        [data-theme="dark"] .target-box { background: rgba(255, 255, 255, .07); }
+        .target-box span { color: var(--text-muted, #64748b); font-size: .74rem; text-transform: uppercase; font-weight: 700; }
+        .target-box strong { font-size: 1.22rem; color: var(--text, #0f172a); }
+        .alfamart-focus { padding: 24px; border-radius: 8px; background: #fff7d6; border: 1px solid rgba(245, 158, 11, .28); display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+        [data-theme="dark"] .alfamart-focus { background: rgba(245, 158, 11, .12); }
+        .focus-row { display: grid; grid-template-columns: 88px 1fr; gap: 14px; align-items: start; }
+        .focus-row strong { color: #ed1c24; font-size: .9rem; }
+        .focus-row p { margin: 0; color: var(--text-muted, #64748b); }
+        .calendar-legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0 20px; }
+        .legend-pill { display: inline-flex; align-items: center; gap: 7px; font-size: .82rem; color: var(--text-muted, #64748b); }
+        .legend-dot { width: 10px; height: 10px; border-radius: 999px; display: inline-block; }
+        .dot-easy { background: #38bdf8; } .dot-speed { background: #ed1c24; } .dot-tempo { background: #f59e0b; } .dot-long { background: #22c55e; } .dot-rest { background: #94a3b8; } .dot-race { background: #111827; }
+        .monthly-plan { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+        .month-card { padding: 16px; overflow: hidden; }
+        .month-header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+        .month-header h3 { margin: 0; font-size: 1.25rem; }
+        .month-header span { color: var(--text-muted, #64748b); font-size: .82rem; font-weight: 700; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+        .day-name { font-size: .68rem; font-weight: 800; color: var(--text-muted, #64748b); text-align: center; text-transform: uppercase; }
+        .calendar-day { min-height: 84px; padding: 7px; border-radius: 8px; background: rgba(15, 23, 42, .035); display: flex; flex-direction: column; gap: 5px; position: relative; overflow: hidden; }
+        [data-theme="dark"] .calendar-day { background: rgba(255, 255, 255, .06); }
+        .calendar-day.empty { background: transparent; border: 1px dashed rgba(148, 163, 184, .25); }
+        .date-num { font: 700 .78rem/1 'JetBrains Mono', monospace; color: var(--text, #0f172a); }
+        .session-tag { width: fit-content; max-width: 100%; padding: 4px 6px; border-radius: 999px; color: #fff; font-size: .63rem; line-height: 1; font-weight: 800; white-space: nowrap; }
+        .session-easy { background: #0284c7; } .session-speed { background: #ed1c24; } .session-tempo { background: #d97706; } .session-long { background: #16a34a; } .session-rest { background: #64748b; } .session-race { background: #111827; }
+        .session-detail { font-size: .67rem; line-height: 1.25; color: var(--text-muted, #64748b); }
+        .week-note { grid-column: 1 / -1; margin-top: 10px; padding: 10px 12px; border-left: 3px solid #ed1c24; background: rgba(237, 28, 36, .06); border-radius: 0 8px 8px 0; color: var(--text-muted, #64748b); font-size: .88rem; }
+        @media (max-width: 980px) { .alfamart-hero, .monthly-plan { grid-template-columns: 1fr; } .alfamart-targets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 640px) { .alfamart-panel, .alfamart-focus, .month-card { padding: 14px; } .calendar-grid { gap: 4px; } .calendar-day { min-height: 74px; padding: 5px; } .session-detail { display: none; } .session-tag { font-size: .58rem; padding-inline: 5px; } .target-box strong { font-size: 1rem; } .focus-row { grid-template-columns: 1fr; gap: 4px; } }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -22,6 +64,7 @@
                 <a href="#journey" class="nav-item">Journey</a>
                 <a href="#personalbest" class="nav-item">PB</a>
                 <a href="#schedule" class="nav-item">Latihan</a>
+                <a href="#alfamart-sub45" class="nav-item">Sub 45</a>
                 <a href="#races" class="nav-item">Race</a>
                 <a href="#gallery" class="nav-item">Galeri</a>
                 <a href="#routes" class="nav-item">Rute</a>
@@ -29,7 +72,7 @@
             </nav>
             <div class="header-actions">
                 <button class="theme-switch" id="themeSwitch" aria-label="Toggle dark mode">
-                    <span class="theme-icon">☀️</span>
+                    <span class="theme-icon">â˜€ï¸</span>
                 </button>
                 <button class="menu-btn" id="menuBtn" aria-label="Menu">
                     <span></span>
@@ -44,12 +87,13 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <span class="mobile-menu-title">Menu</span>
-            <button class="mobile-close" id="mobileClose">✕</button>
+            <button class="mobile-close" id="mobileClose">âœ•</button>
         </div>
         <a href="#journey" class="mobile-link">Journey</a>
         <a href="#personalbest" class="mobile-link">Personal Best</a>
         <a href="#activities" class="mobile-link">Activities</a>
         <a href="#schedule" class="mobile-link">Latihan</a>
+        <a href="#alfamart-sub45" class="mobile-link">Sub 45 Alfamart</a>
         <a href="#races" class="mobile-link">Race</a>
         <a href="#gallery" class="mobile-link">Galeri</a>
         <a href="#gear" class="mobile-link">Gear</a>
@@ -91,7 +135,7 @@
                         </div>
                     </div>
                     <div class="hero-cta">
-                        <a href="#personalbest" class="btn-primary">Personal Best →</a>
+                        <a href="#personalbest" class="btn-primary">Personal Best â†’</a>
                         <a href="#journey" class="btn-ghost">Lihat Journey</a>
                     </div>
                 </div>
@@ -107,26 +151,26 @@
                 <div class="section-head">
                     <span class="sec-label">01</span>
                     <h2 class="sec-title">Running Journey</h2>
-                    <p class="sec-sub">Dari langkah pertama hingga garis finish — setiap kilometer mempunyai cerita</p>
+                    <p class="sec-sub">Dari langkah pertama hingga garis finish â€” setiap kilometer mempunyai cerita</p>
                 </div>
                 <div class="journey-path">
                     <div class="journey-line"></div>
                     <div class="journey-stop stop-2022" data-reveal>
-                        <div class="stop-marker">🌱</div>
+                        <div class="stop-marker">ðŸŒ±</div>
                         <span class="stop-year">November,2024</span>
                         <h3>Langkah Pertama</h3>
                         <p>Mulai berlari 1-2KM. Tidak bisa lari tanpa berhenti,nafas mssih ngos ngosan.</p>
                         <span class="stop-tag">Beginner</span>
                     </div>
                     <div class="journey-stop stop-2023" data-reveal>
-                        <div class="stop-marker">🎯</div>
+                        <div class="stop-marker">ðŸŽ¯</div>
                         <span class="stop-year">Mar 2025</span>
-                        <h3>5K Pertama — Finish!</h3>
+                        <h3>5K Pertama â€” Finish!</h3>
                         <p>Beli sepatu running pertama dan Finish Event 5K pertama di Locomotive Run walaupun berakhir dengan finish kaki kram  ! nafas masih senin kamis,Kaki habis lari langsung sakit.</p>
                         <span class="stop-tag">Breakthrough</span>
                     </div>
                     <div class="journey-stop stop-2024" data-reveal>
-                        <div class="stop-marker">🚀</div>
+                        <div class="stop-marker">ðŸš€</div>
                         <span class="stop-year">Agustus-Desember 2025</span>
                         <h3>Sub-25 5k ,sub 1 jam 10k, sub 2 jam 21k</h3>
                         <p>lari udah enak dan mulai rutin ikut event , mencetak PB sub 25 di 5k, Sub-55 menit di 10K! Finish Half Marathon pertama 1:52:00..</p>
@@ -134,7 +178,7 @@
                     </div>
   
                     <div class="journey-stop stop-2026" data-reveal>
-                        <div class="stop-marker">🔥</div>
+                        <div class="stop-marker">ðŸ”¥</div>
                         <span class="stop-year">2026</span>
                         <h3>Target: Sub 20 5k & FM Sub 5</h3>
                         <p>Target marathon sub-5 di juni 2026.  Terus berkembang,dan terus berlari.</p>
@@ -159,12 +203,12 @@
                             <span class="pb-event-label">Full Marathon</span>
                         </div>
                         <div class="pb-center">
-                            <span class="pb-time">Coming soon</span>
-                            <span class="pb-pace">Coming soon</span>
+                            <span class="pb-time">05:02:00</span>
+                            <span class="pb-pace">07:03 /km</span>
                         </div>
                         <div class="pb-right">
-                            <span>📍 BTN Jakarta International Marathon</span>
-                            <span>📅 14 Juni 2026</span>
+                            <span>ðŸ“ BTN Jakarta International Marathon</span>
+                            <span>ðŸ“… 14 Juni 2026</span>
                           
                         </div>
                     </div>
@@ -178,8 +222,8 @@
                             <span class="pb-pace">Coming soon</span>
                         </div>
                         <div class="pb-right">
-                            <span>📍 Coming soon</span>
-                            <span>📅 Coming soon</span>
+                            <span>ðŸ“ Coming soon</span>
+                            <span>ðŸ“… Coming soon</span>
                         </div>
                     </div>
                     <div class="pb-card" data-reveal>
@@ -192,8 +236,8 @@
                             <span class="pb-pace">Pace 5:16/km</span>
                         </div>
                         <div class="pb-right">
-                            <span>📍 Bhayangkara Run</span>
-                            <span>📅 Juni 2025</span>
+                            <span>ðŸ“ Bhayangkara Run</span>
+                            <span>ðŸ“… Juni 2025</span>
                         </div>
                     </div>
                     <div class="pb-card" data-reveal>
@@ -206,13 +250,13 @@
                             <span class="pb-pace">Pace 4:23/km</span>
                         </div>
                         <div class="pb-right">
-                            <span>📍 Justice Run</span>
-                            <span>📅 5 Apr 2026</span>
+                            <span>ðŸ“ Justice Run</span>
+                            <span>ðŸ“… 5 Apr 2026</span>
                         </div>
                     </div>
                 </div>
                 <div class="pb-goals" data-reveal>
-                    <h3>🎯 Target 2026</h3>
+                    <h3>ðŸŽ¯ Target 2026</h3>
                     <div class="goals-row">
                         <div class="goal-chip"><span>FM</span><strong>Sub 5:00:00</strong></div>
                         <div class="goal-chip"><span>HM</span><strong>Sub 2:00:00</strong></div>
@@ -242,8 +286,8 @@
                             <h4>Ortuseight Hyperglide 4.0</h4>
                             <p>Carbon plate super shoes. Responsif dan ringan.</p>
                             <div class="gear-meta">
-                                <span>📏 30+ km</span>
-                                <span>⭐ 4.8/5</span>
+                                <span>ðŸ“ 30+ km</span>
+                                <span>â­ 4.8/5</span>
                             </div>
                         </div>
                     </div>
@@ -255,8 +299,8 @@
                             <h4>Ortuseight Hyperblast Encore</h4>
                             <p>Sepatu sehari-hari. Nyaman untuk easy run dan long run.</p>
                             <div class="gear-meta">
-                                <span>📏 1000+ km</span>
-                                <span>⭐ 4.5/5</span>
+                                <span>ðŸ“ 1000+ km</span>
+                                <span>â­ 4.5/5</span>
                             </div>
                         </div>
                     </div>
@@ -271,8 +315,8 @@
                             <h4>Garmin Forerunner 55</h4>
                             <p>GPS akurat, training coach & recovery advisor.</p>
                             <div class="gear-meta">
-                                <span>🔋 5 hari</span>
-                                <span>⭐ 5/5</span>
+                                <span>ðŸ”‹ 5 hari</span>
+                                <span>â­ 5/5</span>
                             </div>
                         </div>
                     </div>
@@ -362,71 +406,217 @@
                 </div>
             </div>
         </section>
+        <!-- Menuju Alfamart Run Sub 45 -->
+        <section class="section section-alfamart" id="alfamart-sub45">
+            <div class="container">
+                <div class="section-head">
+                    <span class="sec-label">04</span>
+                    <h2 class="sec-title">Menuju Alfamart Run Sub 45</h2>
+                    <p class="sec-sub">Kalender latihan bulanan menuju 10K pace 4:29/km di Alfamart Run 2026</p>
+                </div>
+
+                <div class="alfamart-hero" data-reveal>
+                    <div class="alfamart-panel">
+                        <span class="alfamart-kicker">Race plan 10K</span>
+                        <h3>Target finish: 44:59</h3>
+                        <p>Program ini dibuat bertahap dari base, speed endurance, spesifik 10K, lalu taper. Intensitas kunci ada di interval Rabu, tempo Jumat, dan long run Minggu.</p>
+                        <div class="alfamart-targets">
+                            <div class="target-box"><span>Race pace</span><strong>4:29/km</strong></div>
+                            <div class="target-box"><span>Easy</span><strong>5:50-6:40</strong></div>
+                            <div class="target-box"><span>Tempo</span><strong>4:35-4:50</strong></div>
+                            <div class="target-box"><span>Interval</span><strong>3:55-4:15</strong></div>
+                        </div>
+                    </div>
+                    <div class="alfamart-focus">
+                        <div class="focus-row"><strong>Base</strong><p>Juli: jaga konsistensi 45-55 km/minggu, tambah strides supaya kaki ringan.</p></div>
+                        <div class="focus-row"><strong>Build</strong><p>Agustus: interval lebih panjang dan tempo stabil untuk tahan pace race.</p></div>
+                        <div class="focus-row"><strong>Peak</strong><p>September: simulasi 10K, long run progresif, dan latihan race pace.</p></div>
+                        <div class="focus-row"><strong>Taper</strong><p>Oktober: volume turun, kaki dibuat segar, race day 18 Oktober 2026.</p></div>
+                    </div>
+                </div>
+
+                <div class="calendar-legend" data-reveal>
+                    <span class="legend-pill"><i class="legend-dot dot-easy"></i>Easy</span>
+                    <span class="legend-pill"><i class="legend-dot dot-speed"></i>Speed</span>
+                    <span class="legend-pill"><i class="legend-dot dot-tempo"></i>Tempo</span>
+                    <span class="legend-pill"><i class="legend-dot dot-long"></i>Long</span>
+                    <span class="legend-pill"><i class="legend-dot dot-rest"></i>Rest</span>
+                    <span class="legend-pill"><i class="legend-dot dot-race"></i>Race</span>
+                </div>
+
+                <div class="monthly-plan">
+                    <div class="month-card" data-reveal>
+                        <div class="month-header"><h3>Juli 2026</h3><span>Base + konsistensi</span></div>
+                        <div class="calendar-grid">
+                            <div class="day-name">Sen</div><div class="day-name">Sel</div><div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div><div class="day-name">Min</div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day"><span class="date-num">1</span><span class="session-tag session-speed">Interval</span><span class="session-detail">6x400m @4:05</span></div>
+                            <div class="calendar-day"><span class="date-num">2</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Mobility 20 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">3</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">3 km @4:50</span></div>
+                            <div class="calendar-day"><span class="date-num">4</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">5</span><span class="session-tag session-long">Long</span><span class="session-detail">13 km santai</span></div>
+                            <div class="calendar-day"><span class="date-num">6</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">7</span><span class="session-tag session-easy">Easy</span><span class="session-detail">8-9 km</span></div>
+                            <div class="calendar-day"><span class="date-num">8</span><span class="session-tag session-speed">Interval</span><span class="session-detail">8x400m @4:05</span></div>
+                            <div class="calendar-day"><span class="date-num">9</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Core 15 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">10</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">4 km @4:50</span></div>
+                            <div class="calendar-day"><span class="date-num">11</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">12</span><span class="session-tag session-long">Long</span><span class="session-detail">14 km</span></div>
+                            <div class="calendar-day"><span class="date-num">13</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">14</span><span class="session-tag session-easy">Easy</span><span class="session-detail">8-9 km</span></div>
+                            <div class="calendar-day"><span class="date-num">15</span><span class="session-tag session-speed">Interval</span><span class="session-detail">5x600m @4:10</span></div>
+                            <div class="calendar-day"><span class="date-num">16</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Mobility 20 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">17</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">5 km @4:48</span></div>
+                            <div class="calendar-day"><span class="date-num">18</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">19</span><span class="session-tag session-long">Long</span><span class="session-detail">15 km</span></div>
+                            <div class="calendar-day"><span class="date-num">20</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">21</span><span class="session-tag session-easy">Easy</span><span class="session-detail">8-9 km</span></div>
+                            <div class="calendar-day"><span class="date-num">22</span><span class="session-tag session-speed">Interval</span><span class="session-detail">10x300m cepat</span></div>
+                            <div class="calendar-day"><span class="date-num">23</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Core 15 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">24</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">Fartlek 8x1 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">25</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">26</span><span class="session-tag session-long">Long</span><span class="session-detail">16 km progresif</span></div>
+                            <div class="calendar-day"><span class="date-num">27</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">28</span><span class="session-tag session-easy">Easy</span><span class="session-detail">8-9 km</span></div>
+                            <div class="calendar-day"><span class="date-num">29</span><span class="session-tag session-speed">Interval</span><span class="session-detail">10x300m cepat</span></div>
+                            <div class="calendar-day"><span class="date-num">30</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Mobility 20 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">31</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">Fartlek 8x1 menit</span></div>
+                            <div class="week-note">Target bulan ini: 45-55 km/minggu, kaki ringan, dan disiplin easy run supaya tidak menumpuk fatigue.</div>
+                        </div>
+                    </div>
+
+                    <div class="month-card" data-reveal>
+                        <div class="month-header"><h3>Agustus 2026</h3><span>Build speed endurance</span></div>
+                        <div class="calendar-grid">
+                            <div class="day-name">Sen</div><div class="day-name">Sel</div><div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div><div class="day-name">Min</div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day"><span class="date-num">1</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">2</span><span class="session-tag session-long">Long</span><span class="session-detail">16 km</span></div>
+                            <div class="calendar-day"><span class="date-num">3</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">4</span><span class="session-tag session-easy">Easy</span><span class="session-detail">8-9 km</span></div>
+                            <div class="calendar-day"><span class="date-num">5</span><span class="session-tag session-speed">Interval</span><span class="session-detail">5x800m @4:10</span></div>
+                            <div class="calendar-day"><span class="date-num">6</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Mobility 20 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">7</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">5 km @4:45</span></div>
+                            <div class="calendar-day"><span class="date-num">8</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">9</span><span class="session-tag session-long">Long</span><span class="session-detail">17 km progresif</span></div>
+                            <div class="calendar-day"><span class="date-num">10</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">11</span><span class="session-tag session-easy">Easy</span><span class="session-detail">8-9 km</span></div>
+                            <div class="calendar-day"><span class="date-num">12</span><span class="session-tag session-speed">Interval</span><span class="session-detail">4x1K @4:12</span></div>
+                            <div class="calendar-day"><span class="date-num">13</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Core 15 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">14</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">6 km @4:45</span></div>
+                            <div class="calendar-day"><span class="date-num">15</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">16</span><span class="session-tag session-long">Long</span><span class="session-detail">18 km</span></div>
+                            <div class="calendar-day"><span class="date-num">17</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">18</span><span class="session-tag session-easy">Easy</span><span class="session-detail">8-9 km</span></div>
+                            <div class="calendar-day"><span class="date-num">19</span><span class="session-tag session-speed">Interval</span><span class="session-detail">6x800m @4:08</span></div>
+                            <div class="calendar-day"><span class="date-num">20</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Mobility 20 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">21</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">2x3 km @4:40</span></div>
+                            <div class="calendar-day"><span class="date-num">22</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">23</span><span class="session-tag session-long">Long</span><span class="session-detail">15 km cutback</span></div>
+                            <div class="calendar-day"><span class="date-num">24</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">25</span><span class="session-tag session-easy">Easy</span><span class="session-detail">8-9 km</span></div>
+                            <div class="calendar-day"><span class="date-num">26</span><span class="session-tag session-speed">Interval</span><span class="session-detail">3x1.6K @4:18</span></div>
+                            <div class="calendar-day"><span class="date-num">27</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Core 15 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">28</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">7 km progresif</span></div>
+                            <div class="calendar-day"><span class="date-num">29</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">30</span><span class="session-tag session-long">Long</span><span class="session-detail">18 km</span></div>
+                            <div class="calendar-day"><span class="date-num">31</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7 km recovery</span></div>
+                            <div class="week-note">Target bulan ini: 50-60 km/minggu, interval makin panjang, tempo 5-7 km, dan long run tetap terkendali.</div>
+                        </div>
+                    </div>
+
+                    <div class="month-card" data-reveal>
+                        <div class="month-header"><h3>September 2026</h3><span>Peak spesifik 10K</span></div>
+                        <div class="calendar-grid">
+                            <div class="day-name">Sen</div><div class="day-name">Sel</div><div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div><div class="day-name">Min</div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day"><span class="date-num">1</span><span class="session-tag session-easy">Easy</span><span class="session-detail">9-10 km</span></div>
+                            <div class="calendar-day"><span class="date-num">2</span><span class="session-tag session-speed">Interval</span><span class="session-detail">4x1K @4:10</span></div>
+                            <div class="calendar-day"><span class="date-num">3</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Mobility 20 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">4</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">6 km @4:40</span></div>
+                            <div class="calendar-day"><span class="date-num">5</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">6</span><span class="session-tag session-long">Long</span><span class="session-detail">18 km</span></div>
+                            <div class="calendar-day"><span class="date-num">7</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">8</span><span class="session-tag session-easy">Easy</span><span class="session-detail">9-10 km</span></div>
+                            <div class="calendar-day"><span class="date-num">9</span><span class="session-tag session-speed">Interval</span><span class="session-detail">3x2K @4:20</span></div>
+                            <div class="calendar-day"><span class="date-num">10</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Core 15 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">11</span><span class="session-tag session-tempo">Race pace</span><span class="session-detail">7 km @4:29</span></div>
+                            <div class="calendar-day"><span class="date-num">12</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">13</span><span class="session-tag session-long">Long</span><span class="session-detail">16 km progresif</span></div>
+                            <div class="calendar-day"><span class="date-num">14</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">15</span><span class="session-tag session-easy">Easy</span><span class="session-detail">9-10 km</span></div>
+                            <div class="calendar-day"><span class="date-num">16</span><span class="session-tag session-speed">Interval</span><span class="session-detail">5x1K @4:08</span></div>
+                            <div class="calendar-day"><span class="date-num">17</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Mobility 20 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">18</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">8 km race pace</span></div>
+                            <div class="calendar-day"><span class="date-num">19</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">20</span><span class="session-tag session-long">Long</span><span class="session-detail">18 km dengan 5 km cepat</span></div>
+                            <div class="calendar-day"><span class="date-num">21</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">22</span><span class="session-tag session-easy">Easy</span><span class="session-detail">9-10 km</span></div>
+                            <div class="calendar-day"><span class="date-num">23</span><span class="session-tag session-speed">Interval</span><span class="session-detail">2x3K @4:24</span></div>
+                            <div class="calendar-day"><span class="date-num">24</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Core 15 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">25</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">5 km @4:35</span></div>
+                            <div class="calendar-day"><span class="date-num">26</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">27</span><span class="session-tag session-long">Long</span><span class="session-detail">14 km cutback</span></div>
+                            <div class="calendar-day"><span class="date-num">28</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7 km recovery</span></div>
+                            <div class="calendar-day"><span class="date-num">29</span><span class="session-tag session-easy">Easy</span><span class="session-detail">9-10 km</span></div>
+                            <div class="calendar-day"><span class="date-num">30</span><span class="session-tag session-speed">Interval</span><span class="session-detail">6x400m tajam</span></div>
+                            <div class="week-note">Target bulan ini: simulasi 10K, blok race pace 4:29/km, dan latihan mental untuk tahan ritme sampai KM 8.</div>
+                        </div>
+                    </div>
+
+                    <div class="month-card" data-reveal>
+                        <div class="month-header"><h3>Oktober 2026</h3><span>Taper + race day</span></div>
+                        <div class="calendar-grid">
+                            <div class="day-name">Sen</div><div class="day-name">Sel</div><div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div><div class="day-name">Min</div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day"><span class="date-num">1</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Mobility 20 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">2</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">5 km @4:40</span></div>
+                            <div class="calendar-day"><span class="date-num">3</span><span class="session-tag session-easy">Easy</span><span class="session-detail">5-7 km</span></div>
+                            <div class="calendar-day"><span class="date-num">4</span><span class="session-tag session-long">Long</span><span class="session-detail">13 km</span></div>
+                            <div class="calendar-day"><span class="date-num">5</span><span class="session-tag session-easy">Easy</span><span class="session-detail">5-6 km</span></div>
+                            <div class="calendar-day"><span class="date-num">6</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">7</span><span class="session-tag session-speed">Interval</span><span class="session-detail">6x400m cepat</span></div>
+                            <div class="calendar-day"><span class="date-num">8</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Core 15 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">9</span><span class="session-tag session-tempo">Race pace</span><span class="session-detail">4 km @4:29</span></div>
+                            <div class="calendar-day"><span class="date-num">10</span><span class="session-tag session-easy">Easy</span><span class="session-detail">5-7 km</span></div>
+                            <div class="calendar-day"><span class="date-num">11</span><span class="session-tag session-long">Long</span><span class="session-detail">10 km santai</span></div>
+                            <div class="calendar-day"><span class="date-num">12</span><span class="session-tag session-easy">Easy</span><span class="session-detail">5-6 km</span></div>
+                            <div class="calendar-day"><span class="date-num">13</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6-8 km + strides</span></div>
+                            <div class="calendar-day"><span class="date-num">14</span><span class="session-tag session-speed">Interval</span><span class="session-detail">4x200m tune up</span></div>
+                            <div class="calendar-day"><span class="date-num">15</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Mobility 20 menit</span></div>
+                            <div class="calendar-day"><span class="date-num">16</span><span class="session-tag session-tempo">Tempo</span><span class="session-detail">20 menit easy</span></div>
+                            <div class="calendar-day"><span class="date-num">17</span><span class="session-tag session-easy">Easy</span><span class="session-detail">5-7 km</span></div>
+                            <div class="calendar-day"><span class="date-num">18</span><span class="session-tag session-race">Race</span><span class="session-detail">Alfamart 10K Sub 45</span></div>
+                            <div class="calendar-day"><span class="date-num">19</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Recovery total</span></div>
+                            <div class="calendar-day"><span class="date-num">20</span><span class="session-tag session-easy">Easy</span><span class="session-detail">5 km ringan</span></div>
+                            <div class="calendar-day"><span class="date-num">21</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6 km santai</span></div>
+                            <div class="calendar-day"><span class="date-num">22</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Mobility</span></div>
+                            <div class="calendar-day"><span class="date-num">23</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6 km</span></div>
+                            <div class="calendar-day"><span class="date-num">24</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7 km</span></div>
+                            <div class="calendar-day"><span class="date-num">25</span><span class="session-tag session-long">Long</span><span class="session-detail">10-12 km santai</span></div>
+                            <div class="calendar-day"><span class="date-num">26</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Recovery total</span></div>
+                            <div class="calendar-day"><span class="date-num">27</span><span class="session-tag session-easy">Easy</span><span class="session-detail">5 km ringan</span></div>
+                            <div class="calendar-day"><span class="date-num">28</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6 km santai</span></div>
+                            <div class="calendar-day"><span class="date-num">29</span><span class="session-tag session-rest">Rest</span><span class="session-detail">Mobility</span></div>
+                            <div class="calendar-day"><span class="date-num">30</span><span class="session-tag session-easy">Easy</span><span class="session-detail">6 km</span></div>
+                            <div class="calendar-day"><span class="date-num">31</span><span class="session-tag session-easy">Easy</span><span class="session-detail">7 km</span></div>
+                            <div class="week-note">Strategi race: KM 1-2 tahan 4:32/km, KM 3-8 stabil 4:28/km, KM 9-10 push sesuai sisa tenaga.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Jadwal Race -->
 
-               <div class="race-row" data-reveal>
-    <div class="race-logo">
-        <img src="assets/download (17).png" alt="hipmi Run" class="race-logo-img">
-    </div>
-    <div class="race-date-block"> 
-        <span class="race-day">10</span>
-        <span class="race-month">May</span>
-    </div>
-    <div class="race-info">
-        <div class="race-type-badge">10K</div>
-        <h3>HIPMI Run 2026</h3>
-        <p> Target: Sub-50 menit.</p>
-        <div class="race-meta">
-            <span>📍 PKOR Wayhalim, Bandar Lampung</span>
-            <span>🎯 Sub 50:00</span>
-            <span> Belum Daftar</span>
-        </div>
-    </div>
-    <div class="race-status status-delay">Belum daftar</div>
-</div>
-
-       <div class="race-row" data-reveal>
-    <div class="race-logo">
-        <img src="assets/1775727052-693ycFdUnr6ychSE5jAQWa4Huz33kHVz.jpg" alt="Justice Run" class="race-logo-img">
-    </div>
-    <div class="race-date-block">
-        <span class="race-day">24</span>
-        <span class="race-month">May</span>
-    </div>
-    <div class="race-info">
-        <div class="race-type-badge">5K</div>
-        <h3>Smartfren Run 2026</h3>
-        <p> Target: Sub-21 menit.</p>
-        <div class="race-meta">
-            <span>📍 Mall Boemi Kedaton, Bandar Lampung</span>
-            <span>🎯 Sub 21:00</span>
-            <span>✅ Registered</span>
-        </div>
-    </div>
-    <div class="race-status status-upcoming">Mendatang</div>
-</div>
-
-<div class="race-row" data-reveal>
-    <div class="race-logo">
-        <img src="assets/download (16).png" alt="BTN Jakarta International Marathon" class="race-logo-img">
-    </div>
-    <div class="race-date-block">
-        <span class="race-day">14</span>
-        <span class="race-month">JUN</span>
-    </div>
-    <div class="race-info">
-        <div class="race-type-badge trail">FM 42K</div>
-        <h3>BTN Jakarta International Marathon</h3>
-        <p>Lebarannya pelari, siap meramaikan jalanan Jakarta!</p>
-        <div class="race-meta">
-            <span>📍 Monas-GBK</span>
-            <span>🎯 Sub 5 Jam</span>
-            <span>✅ Registered</span>
-        </div>
-    </div>
-    <div class="race-status status-upcoming">Mendatang</div>
-</div>
+  
 
 <div class="race-row" data-reveal>
     <div class="race-logo">
@@ -441,9 +631,9 @@
         <h3>Alfamart Run 2026</h3>
         <p>Fun run dengan hadiah + goodie bag terbesar di Indonesia.</p>
         <div class="race-meta">
-            <span>📍 Jakarta</span>
-            <span>🎯 Sub 45:00</span>
-            <span>✅ Registered</span>
+            <span>ðŸ“ Jakarta</span>
+            <span>ðŸŽ¯ Sub 45:00</span>
+            <span>âœ… Registered</span>
         </div>
     </div>
     <div class="race-status status-upcoming">Mendatang</div>
@@ -468,17 +658,17 @@
                 <div class="gallery-masonry">
                     <div class="gallery-item gi-tall" data-category="race" data-reveal>
                         <div class="gi-visual race-visual">
-                            <span class="gi-emoji">🏅</span>
+                            <span class="gi-emoji">ðŸ…</span>
                             <span class="gi-badge">Race</span>
                         </div>
                         <div class="gi-caption">
                             <h4>Jakarta Marathon 2025</h4>
-                            <p>Finish line — Sub 4 jam!</p>
+                            <p>Finish line â€” Sub 4 jam!</p>
                         </div>
                     </div>
                     <div class="gallery-item" data-category="training" data-reveal>
                         <div class="gi-visual training-visual">
-                            <span class="gi-emoji">🏋️</span>
+                            <span class="gi-emoji">ðŸ‹ï¸</span>
                             <span class="gi-badge">Latihan</span>
                         </div>
                         <div class="gi-caption">
@@ -488,7 +678,7 @@
                     </div>
                     <div class="gallery-item" data-category="team" data-reveal>
                         <div class="gi-visual team-visual">
-                            <span class="gi-emoji">👥</span>
+                            <span class="gi-emoji">ðŸ‘¥</span>
                             <span class="gi-badge">Tim</span>
                         </div>
                         <div class="gi-caption">
@@ -498,37 +688,37 @@
                     </div>
                     <div class="gallery-item gi-wide" data-category="race" data-reveal>
                         <div class="gi-visual race-visual-2">
-                            <span class="gi-emoji">🌅</span>
+                            <span class="gi-emoji">ðŸŒ…</span>
                             <span class="gi-badge">Race</span>
                         </div>
                         <div class="gi-caption">
                             <h4>Bali Half Marathon 2025</h4>
-                            <p>PB baru — 1:48:32!</p>
+                            <p>PB baru â€” 1:48:32!</p>
                         </div>
                     </div>
                     <div class="gallery-item" data-category="medal" data-reveal>
                         <div class="gi-visual medal-visual">
-                            <span class="gi-emoji">🥇</span>
+                            <span class="gi-emoji">ðŸ¥‡</span>
                             <span class="gi-badge">Medali</span>
                         </div>
                         <div class="gi-caption">
                             <h4>Marathon Finisher Medal</h4>
-                            <p>42.195KM — Done!</p>
+                            <p>42.195KM â€” Done!</p>
                         </div>
                     </div>
                     <div class="gallery-item gi-tall" data-category="training" data-reveal>
                         <div class="gi-visual training-visual-2">
-                            <span class="gi-emoji">⛰️</span>
+                            <span class="gi-emoji">â›°ï¸</span>
                             <span class="gi-badge">Latihan</span>
                         </div>
                         <div class="gi-caption">
                             <h4>Trail Run Puncak</h4>
-                            <p>Long run weekend — 15K</p>
+                            <p>Long run weekend â€” 15K</p>
                         </div>
                     </div>
                     <div class="gallery-item" data-category="team" data-reveal>
                         <div class="gi-visual team-visual-2">
-                            <span class="gi-emoji">🎉</span>
+                            <span class="gi-emoji">ðŸŽ‰</span>
                             <span class="gi-badge">Tim</span>
                         </div>
                         <div class="gi-caption">
@@ -538,7 +728,7 @@
                     </div>
                     <div class="gallery-item gi-wide" data-category="medal" data-reveal>
                         <div class="gi-visual medal-visual-2">
-                            <span class="gi-emoji">🎖️</span>
+                            <span class="gi-emoji">ðŸŽ–ï¸</span>
                             <span class="gi-badge">Medali</span>
                         </div>
                         <div class="gi-caption">
@@ -548,7 +738,7 @@
                     </div>
                     <div class="gallery-item" data-category="race" data-reveal>
                         <div class="gi-visual race-visual-3">
-                            <span class="gi-emoji">🎽</span>
+                            <span class="gi-emoji">ðŸŽ½</span>
                             <span class="gi-badge">Race</span>
                         </div>
                         <div class="gi-caption">
@@ -558,7 +748,7 @@
                     </div>
                     <div class="gallery-item" data-category="training" data-reveal>
                         <div class="gi-visual training-visual-3">
-                            <span class="gi-emoji">🌄</span>
+                            <span class="gi-emoji">ðŸŒ„</span>
                             <span class="gi-badge">Latihan</span>
                         </div>
                         <div class="gi-caption">
@@ -605,8 +795,8 @@
                             <h4>Pemda Loop</h4>
                             <p>Satu satunya rute terdekat. Mengelilingi komplek perkantoran kabupaten dengan udara yang sejuk dengan pemandangan hamparan persawahan yang indah.</p>
                             <div class="route-stats">
-                                <span>📈 +9m elev</span>
-                                <span>🏃 ×100++ runs</span>
+                                <span>ðŸ“ˆ +9m elev</span>
+                                <span>ðŸƒ Ã—100++ runs</span>
 
                             </div>
                         </div>
@@ -651,8 +841,8 @@
     </a>
                 </div>
                 <div class="connect-motto" data-reveal>
-                    <p class="motto-big">"Berlarilah terus — <br> sampai orang orang mengenalmu karena lari."</p>
-                    <a href="https://wa.me/6288973748682" class="btn-primary">Kuy Lari bareng →</a>
+                    <p class="motto-big">"Berlarilah terus â€” <br> sampai orang orang mengenalmu karena lari."</p>
+                    <a href="https://wa.me/6288973748682" class="btn-primary">Kuy Lari bareng â†’</a>
                 </div>
             </div>
         </section>
@@ -663,8 +853,8 @@
         <div class="container">
             <div class="footer-inner">
                 <div class="footer-logo">A</div>
-                <p>&copy; 2026 Andika Fikri Azhari — Run with purpose.</p>
-                <a href="#hero" class="footer-top">↑</a>
+                <p>&copy; 2026 Andika Fikri Azhari â€” Run with purpose.</p>
+                <a href="#hero" class="footer-top">â†‘</a>
             </div>
         </div>
     </footer>
@@ -673,3 +863,6 @@
     <script src="strava.js"></script>
 </body>
 </html>
+
+
+
